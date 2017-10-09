@@ -19,10 +19,6 @@ type alias Point =
     }
 
 
-
--- DO STUFF
-
-
 main : Html msg
 main =
     text (toString (step 1.5 object))
@@ -36,12 +32,18 @@ object =
 step : Float -> Object -> Object
 step dt object =
     object
-        |> modify (compose position pointX) (\px -> px + object.velocity.x * dt)
-        >> modify (compose position pointY) (\px -> px + object.velocity.x * dt)
+        |> modify (position => x) (\px -> px + object.velocity.x * dt)
+        >> modify (position => y) (\px -> px + object.velocity.x * dt)
 
 
-pointX : Lens Point Float
-pointX =
+(=>) : Lens a b -> Lens b c -> Lens a c
+(=>) =
+    compose
+infixr 9 =>
+
+
+x : Lens { r | x : Float } Float
+x =
     let
         get point =
             point.x
@@ -52,8 +54,8 @@ pointX =
         Lens get set
 
 
-pointY : Lens Point Float
-pointY =
+y : Lens { r | y : Float } Float
+y =
     let
         get point =
             point.y
@@ -64,7 +66,7 @@ pointY =
         Lens get set
 
 
-position : Lens Object Point
+position : Lens { r | position : a } a
 position =
     let
         get object =
@@ -76,7 +78,7 @@ position =
         Lens get set
 
 
-velocity : Lens Object Point
+velocity : Lens { r | velocity : a } a
 velocity =
     let
         get object =
