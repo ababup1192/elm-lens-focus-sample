@@ -33,7 +33,7 @@ step : Float -> Object -> Object
 step dt object =
     object
         |> modify (position => x) (\px -> px + object.velocity.x * dt)
-        >> modify (position => y) (\px -> px + object.velocity.x * dt)
+        |> modify (position => y) (\px -> px + object.velocity.x * dt)
 
 
 (=>) : Lens a b -> Lens b c -> Lens a c
