@@ -44,47 +44,19 @@ infixr 9 =>
 
 x : Lens { r | x : Float } Float
 x =
-    let
-        get point =
-            point.x
-
-        set x point =
-            { point | x = x }
-    in
-        Lens get set
+    Lens .x (\f r -> { r | x = f r.x })
 
 
 y : Lens { r | y : Float } Float
 y =
-    let
-        get point =
-            point.y
-
-        set y point =
-            { point | y = y }
-    in
-        Lens get set
+    Lens .y (\f r -> { r | y = f r.y })
 
 
 position : Lens { r | position : a } a
 position =
-    let
-        get object =
-            object.position
-
-        set position object =
-            { object | position = position }
-    in
-        Lens get set
+    Lens .position (\f r -> { r | position = f r.position })
 
 
 velocity : Lens { r | velocity : a } a
 velocity =
-    let
-        get object =
-            object.velocity
-
-        set velocity object =
-            { object | velocity = velocity }
-    in
-        Lens get set
+    Lens .velocity (\f r -> { r | velocity = f r.velocity })
