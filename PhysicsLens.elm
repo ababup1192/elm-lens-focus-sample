@@ -44,19 +44,20 @@ infixr 9 =>
 
 x : Lens { r | x : a } a
 x =
-    Lens .x (\f r -> { r | x = f r.x })
+    Lens .x (\x r -> { r | x = x })
+
 
 
 y : Lens { r | y : a } a
 y =
-    Lens .y (\f r -> { r | y = f r.y })
+    Lens .y (\y r -> { r | y = y })
 
 
 position : Lens { r | position : a } a
 position =
-    Lens .position (\f r -> { r | position = f r.position })
+    Lens .position (\position r -> { r | position = position })
 
 
 velocity : Lens { r | velocity : a } a
 velocity =
-    Lens .velocity (\f r -> { r | velocity = f r.velocity })
+    Lens .velocity (\velocity r -> { r | velocity = velocity })
