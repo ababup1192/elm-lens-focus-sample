@@ -42,12 +42,12 @@ step dt object =
 infixr 9 =>
 
 
-x : Lens { r | x : Float } Float
+x : Lens { r | x : a } a
 x =
     Lens .x (\f r -> { r | x = f r.x })
 
 
-y : Lens { r | y : Float } Float
+y : Lens { r | y : a } a
 y =
     Lens .y (\f r -> { r | y = f r.y })
 
